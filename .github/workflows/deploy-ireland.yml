@@ -2,7 +2,7 @@ name: Deploy NASE-842 Frontend (Ireland)
 
 on:
   push:
-    branches: [main]
+    branches: [ main ]
   workflow_dispatch:
 
 permissions:
@@ -20,7 +20,7 @@ jobs:
 
     env:
       AWS_REGION: eu-west-1
-      AWS_ACCOUNT_ID: "253650698585"
+      AWS_ACCOUNT_ID: '253650698585'
       S3_BUCKET: nase842-frontend-rebuild-253650698585-eu-west-1
       CLOUDFRONT_ID: E3TD8SX401FEWB
       VITE_API_HOST: https://ezes0o2ub8.execute-api.eu-west-1.amazonaws.com
