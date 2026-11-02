@@ -1,0 +1,44 @@
+name: Frontend CI
+
+on:
+  pull_request:
+  push:
+    branches: [main, review-remediation-ci]
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    name: Vue checks and unit tests
+    runs-on: ubuntu-latest
+    env:
+      VITE_API_HOST: https://ezes0o2ub8.execute-api.eu-west-1.amazonaws.com
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Check TypeScript
+        run: pnpm type-check
+
+      - name: Lint without changing files
+        run: pnpm exec eslint .
+
+      - name: Run unit tests
+        run: pnpm test:unit
+
+      - name: Verify production build
+        run: pnpm build
