@@ -3,7 +3,7 @@ name: Frontend CI
 on:
   pull_request:
   push:
-    branches: [main, review-remediation-ci]
+    branches: [ main, review-remediation-ci ]
 
 permissions:
   contents: read
@@ -25,7 +25,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: "22"
+          node-version: '22'
           cache: pnpm
 
       - name: Install dependencies
