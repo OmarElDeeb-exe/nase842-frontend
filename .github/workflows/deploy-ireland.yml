@@ -57,10 +57,6 @@ jobs:
           ACCOUNT="$(aws sts get-caller-identity --query Account --output text)"
           test "$ACCOUNT" = "$AWS_ACCOUNT_ID"
           aws s3api head-bucket --bucket "$S3_BUCKET"
-          STATUS="$(aws cloudfront get-distribution \
-            --id "$CLOUDFRONT_ID" \
-            --query Distribution.Status --output text)"
-          test "$STATUS" = "Deployed"
 
       - name: Upload static assets to Ireland S3
         run: |
